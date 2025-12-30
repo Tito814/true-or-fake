@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8" />
   <title>T-Detector | تحقق من الأخبار</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="static/logo.ico" />
 
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -11,28 +13,29 @@
 
 <body>
 
-<header>
-  <h1>T-Detector</h1>
-  <p>تحقق من الأخبار باستخدام تحليل ذكي</p>
-</header>
+  <header>
+    <h1>T-Detector</h1>
+    <p>تحقق من الأخبار باستخدام تحليل ذكي</p>
+  </header>
 
-<section class="hero">
-  <h2>تحقق من الخبر الآن</h2>
-  <textarea id="newsInput" placeholder="ألصق نص الخبر أو رابطه هنا..."></textarea>
-  <button onclick="checkNews()">تحقق</button>
-</section>
+  <section class="hero">
+    <h2>تحقق من الخبر الآن</h2>
+    <textarea id="newsInput" placeholder="ألصق نص الخبر أو رابطه هنا..."></textarea>
+    <button onclick="checkNews()">تحقق</button>
+  </section>
 
-<section id="result" class="result hidden">
-  <h3>📊 النتيجة</h3>
-  <p id="newsType"></p>
-  <p id="confidence"></p>
-  <ul id="reasons"></ul>
-</section>
+  <section id="result" class="result hidden">
+    <h3>📊 النتيجة</h3>
+    <p id="newsType"></p>
+    <p id="confidence"></p>
+    <ul id="reasons"></ul>
+  </section>
 
-<footer>
-  <p>© 2025 T-Detector </p>
-</footer>
+  <footer>
+    <p>© 2025 T-Detector </p>
+  </footer>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
