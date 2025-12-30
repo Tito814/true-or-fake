@@ -1,130 +1,38 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8" />
+  <title>T-Detector | تحقق من الأخبار</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>T-Detector - تحقق من الأخبار</title>
-  <link rel="icon" type="image/x-icon" href="static/logo.ico" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- Link to your CSS file in Flask static folder -->
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- Header -->
-  <header>
-    <a href="{{ url_for('index') }}" class="logo-container">
-      <img src="{{ url_for('static', filename='logo.png') }}" alt="شعار الموقع" class="logo" />
-      <h1 style="margin: 0; font-size: 1.5em">T-Detector</h1>
-    </a>
-    <nav>
-      <a href="#check">تحقق الآن</a>
-      <a href="#how">كيف نتحقق</a>
-      <a href="#about">عنّا</a>
-      <a href="#contact">تواصل</a>
-    </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="check">
-    <h2>تحقق من الخبر في ثوانٍ ⏱</h2>
-    <p>أدخل الرابط أو النص أدناه ودع الذكاء الاصطناعي يقوم بالباقي</p>
-    <form action="{{ url_for('check_news') }}" method="post">
-      <input type="text" name="news_input" placeholder="ألصق رابط الخبر أو النص هنا" required />
-      <textarea id="news"></textarea>
-      <button onclick="checkNews()">تحقق</button>
-      <p id="result"></p>
-    </form>
-  </section>
+<header>
+  <h1>T-Detector</h1>
+  <p>تحقق من الأخبار باستخدام تحليل ذكي</p>
+</header>
 
-  <!-- Result Section (optional dynamic result) -->
-  {% if result %}
-  <section class="result">
-    <h3>النتيجة:</h3>
-    <p><strong>نوع الخبر:</strong> {{ result.type }}</p>
-    <p><strong>درجة الثقة:</strong> {{ result.confidence }}%</p>
-    {% if result.reasons %}
-    <ul>
-      {% for reason in result.reasons %}
-      <li>{{ reason }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %} {% if result.sources %}
-    <p>
-      المصادر: {% for src in result.sources %}
-      <a href="{{ src }}" target="_blank">رابط {{ loop.index }}</a>{% if not
-      loop.last %}, {% endif %} {% endfor %}
-    </p>
-    {% endif %}
-  </section>
-  {% endif %}
+<section class="hero">
+  <h2>تحقق من الخبر الآن</h2>
+  <textarea id="newsInput" placeholder="ألصق نص الخبر أو رابطه هنا..."></textarea>
+  <button onclick="checkNews()">تحقق</button>
+</section>
 
-  <!-- How Section -->
-  <section id="how" style="padding: 20px">
-    <h2>كيف نتحقق؟</h2>
-    <ol>
-      <li>إدخال الخبر</li>
-      <li>تحليل المحتوى</li>
-      <li>البحث في المصادر الموثوقة</li>
-      <li>عرض النتيجة</li>
-    </ol>
-  </section>
+<section id="result" class="result hidden">
+  <h3>📊 النتيجة</h3>
+  <p id="newsType"></p>
+  <p id="confidence"></p>
+  <ul id="reasons"></ul>
+</section>
 
-  <!-- About Section -->
-  <section id="about" style="padding: 20px">
-    <h2>عنّا</h2>
-    <p>
-      T-Detector مشروع طلابي يهدف لمحاربة الأخبار الكاذبة باستخدام تقنيات
-      الذكاء الاصطناعي.
-    </p>
-  </section>
+<footer>
+  <p>© 2025 T-Detector - مشروع جامعي</p>
+</footer>
 
-  <!-- Contact Section -->
-  <section id="contact" style="padding: 20px">
-    <h2>تواصل معنا</h2>
-    <form>
-      <input type="text" name="name" placeholder="الاسم" style="width: 100%; padding: 10px; margin-bottom: 10px"
-        required />
-      <input type="email" name="email" placeholder="البريد الإلكتروني"
-        style="width: 100%; padding: 10px; margin-bottom: 10px" required />
-      <textarea name="message" placeholder="الرسالة" style="width: 100%; padding: 10px; margin-bottom: 10px"
-        required></textarea>
-      <button type="submit" style="
-            padding: 10px 20px;
-            background: #2d9cdb;
-            color: white;
-            border: none;
-            border-radius: 5px;
-          ">
-        إرسال
-      </button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <div class="footer">
-    <p>© 2025 T-Detector - جميع الحقوق محفوظة</p>
-  </div>
+<script src="script.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs">
-  const model = await tf.loadLayersModel('tfjs_model/model.json');
-  function checkNews() {
-    const text = document.getElementById("news").value.toLowerCase();
-
-    let score = 0;
-
-    if (text.includes("official sources")) score += 40;
-    if (text.includes("according to")) score += 30;
-    if (text.includes("breaking")) score -= 30;
-    if (text.includes("shocking")) score -= 40;
-
-    let result = score >= 50 ? "Real News ✅" : "Fake / Unreliable ❌";
-
-    document.getElementById("result").innerText =
-      result + " (Confidence: " + Math.abs(score) + "%)";
-  }
-</script>
-
 </html>

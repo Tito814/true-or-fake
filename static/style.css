@@ -1,83 +1,66 @@
 body {
-  font-family: "Cairo", sans-serif;
+  font-family: 'Cairo', sans-serif;
   margin: 0;
-  background: #f9f9f9;
-  color: #0a2540;
+  background: #f5f7fa;
+  text-align: center;
 }
 
 header {
-  background: #0a2540;
+  background: #2d9cdb;
   color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  /* مسافة بين الشعار والنص */
-  text-decoration: none;
-  color: white;
-}
-
-.logo {
-  height: 40px;
-  width: auto;
-}
-
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-nav a:hover {
-  text-decoration: underline;
+  padding: 20px;
 }
 
 .hero {
-  text-align: center;
-  padding: 50px 20px;
-  background: #2d9cdb;
-  color: white;
+  padding: 30px;
 }
 
-.hero input {
+textarea {
+  width: 90%;
+  max-width: 600px;
+  height: 120px;
   padding: 10px;
-  width: 60%;
-  max-width: 400px;
-  border: none;
-  border-radius: 5px;
-  margin-top: 20px;
+  font-size: 16px;
 }
 
-.hero button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+button {
+  margin-top: 15px;
+  padding: 10px 30px;
+  font-size: 18px;
   background: #27ae60;
   color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  margin-right: 10px;
+}
+
+button:hover {
+  background: #219150;
 }
 
 .result {
   background: white;
+  margin: 30px auto;
   padding: 20px;
-  margin: 20px auto;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 80%;
   max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.footer {
-  background: #0a2540;
-  color: white;
-  text-align: center;
-  padding: 15px;
+.result.real {
+  border-right: 6px solid green;
+}
+
+.result.fake {
+  border-right: 6px solid red;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  background: #eee;
+  padding: 10px;
   margin-top: 40px;
 }
