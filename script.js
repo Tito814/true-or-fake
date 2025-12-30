@@ -46,8 +46,8 @@ function checkNews() {
   resultBox.classList.remove("hidden", "real", "fake");
   resultBox.classList.add(score >= 60 ? "real" : "fake");
 
-  newsType.innerText = "📰 النوع: " + type;
-  confidence.innerText = "🔍 درجة الثقة: " + score + "%";
+  newsType.innerText = " النوع: " + type;
+  confidence.innerText = " درجة الثقة: " + score + "%";
 
   reasonsList.innerHTML = "";
   reasons.forEach(r => {
